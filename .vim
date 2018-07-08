@@ -1,1 +1,1 @@
-/home/adrianisuru/.config/nvim
+.config/nvim
