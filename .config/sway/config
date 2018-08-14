@@ -18,6 +18,10 @@ set $term termite
 # Your preferred application launcher
 set $menu dmenu_run
 
+# wal
+exec wal -R &
+include "$HOME/.cache/wal/colors-sway"
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
@@ -191,9 +195,9 @@ gaps_outer 0
 bar {
     position top
     colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        statusline $color0
+        background $background
+        inactive_workspace $color4 $background $foreground
     }
 }
 
@@ -203,3 +207,5 @@ bar {
  bindsym XF86AudioMute exec pactl set-sink-mute $(pacmd list-sinks |awk '/* index:/{print $3}') toggle
 
 include /etc/sway/config.d/*
+
+client.focused $color0 $color4 $foreground $color7

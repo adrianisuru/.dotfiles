@@ -1,3 +1,4 @@
+export TERM="xterm-256color"
 alias ls="ls --color=auto"
 
 # Preferred editor for local and remote sessions

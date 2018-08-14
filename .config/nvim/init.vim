@@ -49,5 +49,7 @@ inoremap <A-;> <Esc>la
 
 let NERDTreeShowHidden=1
 
+let g:syntastic_rust_checkers = ['rustc']
+
 inoremap <C-Bslash> <Esc>:NERDTreeToggle<Enter>
 nnoremap <C-Bslash> <Esc>:NERDTreeToggle<Enter>
