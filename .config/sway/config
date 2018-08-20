@@ -193,7 +193,9 @@ gaps_outer 0
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
+    font pango:DejaBu Sans Mono, FontAwesome 12
     position top
+    status_command i3status-rs ~/.config/sway/bar.toml
     colors {
         statusline $color0
         background $background
