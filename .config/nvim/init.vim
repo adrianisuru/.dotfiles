@@ -1,7 +1,38 @@
 set number
-execute pathogen#infect()
+set hidden
 syntax on
 filetype plugin indent on
+
+"Dein
+if &compatible
+  set nocompatible
+endif
+filetype off
+" append to runtime path
+set rtp+=/usr/share/vim/vimfiles
+" initialize dein, plugins are installed to this directory
+call dein#begin(expand('~/.cache/dein'))
+" add packages here, e.g:
+call dein#add('qwelyt/TrippingRobot')
+call dein#add('jiangmiao/auto-pairs')
+call dein#add('scrooloose/nerdtree')
+call dein#add('rakr/vim-one')
+call dein#add('vim-airline/vim-airline')
+"call dein#add('vim-airline/vim-airline-themes')
+call dein#add('Shougo/deoplete.nvim')
+if !has('nvim')
+  call dein#add('roxma/nvim-yarp')
+  call dein#add('roxma/vim-hug-neovim-rpc')
+endif
+call dein#add('rust-lang/rust.vim')
+" exit dein
+call dein#end()
+" auto-install missing packages on startup
+if dein#check_install()
+  call dein#install()
+endif
+filetype plugin on
+
 
 
 "Credit joshdick
@@ -50,6 +81,14 @@ inoremap <A-;> <Esc>la
 let NERDTreeShowHidden=1
 
 let g:syntastic_rust_checkers = ['cargo']
+let g:racer_cmd = "~/.cargo/bin/racer"
+
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 inoremap <C-Bslash> <Esc>:NERDTreeToggle<Enter>
 nnoremap <C-Bslash> <Esc>:NERDTreeToggle<Enter>
+
+call deoplete#enable()

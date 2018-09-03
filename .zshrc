@@ -9,6 +9,8 @@ else
 fi
 export EDITOR="vim"
 
+export RUST_SRC_PATH=~/src/rust/src
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -24,3 +26,5 @@ export EDITOR="vim"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+export NVIM_PYTHON_LOG_FILE=/tmp/log
+export NVIM_PYTHON_LOG_LEVEL=DEBUG
