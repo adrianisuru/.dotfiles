@@ -28,6 +28,10 @@ format = "{1m}"
 block = "sound"
 
 [[block]]
+block = "battery"
+device = 0
+
+[[block]]
 block = "time"
 interval = 60
 format = "%a %d/%m %R"

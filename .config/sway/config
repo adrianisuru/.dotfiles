@@ -27,7 +27,7 @@ include "$HOME/.cache/wal/colors-sway"
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/Backgrounds/juliaset.png fill
+output * bg ~/Pictures/Backgrounds/vim.png fit
 #
 # Example configuration:
 #
@@ -205,6 +205,7 @@ bar {
         statusline $color0
         background $background
         inactive_workspace $color4 $background $foreground
+        tray_output all
     }
 }
 
@@ -212,6 +213,10 @@ bar {
  bindsym XF86AudioRaiseVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') +5%
  bindsym XF86AudioLowerVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') -5%
  bindsym XF86AudioMute exec pactl set-sink-mute $(pacmd list-sinks |awk '/* index:/{print $3}') toggle
+
+# Brightness keys
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 
 include /etc/sway/config.d/*
 
@@ -222,3 +227,8 @@ default_border pixel 3
 # Take Screenshot
 bindsym --release Print exec swaygrab ~/Pictures/Screenshots/$(date +%Y-%m-%d-%T)-screenshot.png
 
+# Launch NetworkManager
+exec nm-applet
+
+# Lock screen
+bindsym $mod+Shift+x exec swaylock

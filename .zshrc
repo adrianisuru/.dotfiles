@@ -28,3 +28,9 @@ export RUST_SRC_PATH=~/src/rust/src
 source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 export NVIM_PYTHON_LOG_FILE=/tmp/log
 export NVIM_PYTHON_LOG_LEVEL=DEBUG
+
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+export MY_ROOT=~/src/jiri
+export PATH=$MY_ROOT/.jiri_root/bin:$PATH
+
