@@ -1,4 +1,3 @@
-set number
 set hidden
 syntax on
 filetype plugin indent on
@@ -24,8 +23,11 @@ if !has('nvim')
   call dein#add('roxma/nvim-yarp')
   call dein#add('roxma/vim-hug-neovim-rpc')
 endif
+call dein#add('racer-rust/vim-racer')
 call dein#add('rust-lang/rust.vim')
 call dein#add('artur-shaik/vim-javacomplete2')
+call dein#add('octol/vim-cpp-enhanced-highlight')
+" call dein#add('arakashic/chromatica.nvim')
 " exit dein
 call dein#end()
 " auto-install missing packages on startup
@@ -129,4 +131,27 @@ autocmd FileType java setlocal omnifunc=javacomplete#Complete
   nmap <silent> <buffer> <leader>jn <Plug>(JavaComplete-Generate-NewClass)
   nmap <silent> <buffer> <leader>jN <Plug>(JavaComplete-Generate-ClassInFile)
 
+" Highlight after 80 characters
+"   highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
+"   match OverLength /\%>80v.\+/
+    set number
+
+
+" Press F12 to switch to UTF-8 encoding
+nnoremap <F12> :e ++enc=utf-8<CR>
+
+" Flush buffer
+tnoremap <C-l> <C-\><C-n><C-l>i<C-l>
+
+" Chromatica
+"let g:chromatica#enable_at_startup=1
+"let g:chromatica#libclang_path='/usr/lib/libclang.so'
+
+" line at 80 col
+set colorcolumn=81
+
+" compile latex
+autocmd BufNewFile,BufRead *.tex nnoremap <C-c> :w<Enter>:!pdflatex %<Enter>
+
 call deoplete#enable()
+

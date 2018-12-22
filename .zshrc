@@ -11,6 +11,8 @@ export EDITOR="vim"
 
 export RUST_SRC_PATH=~/src/rust/src
 
+export PATH=$PATH:~/src/_shared/Linux64/
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
