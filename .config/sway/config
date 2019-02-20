@@ -28,7 +28,7 @@ include "$HOME/.cache/wal/colors-sway"
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/Backgrounds/julia1.jpg fit
+output * bg ~/Pictures/Backgrounds/juliaset.png fill
 #
 # Example configuration:
 #
@@ -43,11 +43,17 @@ output * bg ~/Pictures/Backgrounds/julia1.jpg fit
 #
 
 set $touchpad "1739:32382:DELL0740:00_06CB:7E7E_Touchpad"
+set $mouse "1133:4123:Logitech_M705"
 
 input $touchpad {
-	dwt enabled
-	tap enabled
-	natural_scroll enabled
+	dwt 1
+	tap 1
+	natural_scroll 1
+}
+
+input $mouse {
+    pointer_accel 0
+    accel_profile flat
 }
 
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -222,7 +228,7 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 
 include /etc/sway/config.d/*
 
-client.focused $color0 $color1 $color4 $foreground $color7
+client.focused $color0 $color1 $color4 $foreground $color0
 
 default_border pixel 3
 
@@ -234,3 +240,6 @@ exec nm-applet
 
 # Lock screen
 bindsym $mod+Shift+x exec swaylock
+
+# Enable notifications
+exec dunst
