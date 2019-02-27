@@ -27,6 +27,7 @@ call dein#add('racer-rust/vim-racer')
 call dein#add('rust-lang/rust.vim')
 call dein#add('artur-shaik/vim-javacomplete2')
 call dein#add('octol/vim-cpp-enhanced-highlight')
+call dein#add('tikhomirov/vim-glsl')
 " call dein#add('arakashic/chromatica.nvim')
 " exit dein
 call dein#end()
@@ -152,6 +153,7 @@ set colorcolumn=81
 
 " compile latex
 autocmd BufNewFile,BufRead *.tex nnoremap <C-c> :w<Enter>:!pdflatex %<Enter>
+
 
 call deoplete#enable()
 

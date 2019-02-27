@@ -233,7 +233,7 @@ client.focused $color0 $color1 $color4 $foreground $color0
 default_border pixel 3
 
 # Take Screenshot
-bindsym --release Print exec swaygrab ~/Pictures/Screenshots/$(date +%Y-%m-%d-%T)-screenshot.png
+bindsym --release $mod+p exec grim ~/Pictures/Screenshots/$(date +%Y-%m-%d-%T)-screenshot.png
 
 # Launch NetworkManager
 exec nm-applet
