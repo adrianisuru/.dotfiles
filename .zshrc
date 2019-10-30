@@ -1,6 +1,10 @@
 export TERM="xterm-256color"
 alias ls="ls --color=auto"
 
+function cd {
+  builtin cd "$@" && clear && ls
+}
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export VISUAL="vim"
