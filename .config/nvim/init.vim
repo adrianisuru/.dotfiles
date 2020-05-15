@@ -1,4 +1,5 @@
 set hidden
+set mouse=a
 syntax on
 filetype plugin indent on
 
@@ -12,23 +13,37 @@ set rtp+=/usr/share/vim/vimfiles
 " initialize dein, plugins are installed to this directory
 call dein#begin(expand('~/.cache/dein'))
 " add packages here, e.g:
-call dein#add('qwelyt/TrippingRobot')
+"call dein#add('qwelyt/TrippingRobot')
 call dein#add('jiangmiao/auto-pairs')
-call dein#add('scrooloose/nerdtree')
-call dein#add('rakr/vim-one')
+"call dein#add('scrooloose/nerdtree')
+"call dein#add('rakr/vim-one')
+call dein#add('sonph/onehalf', {'rtp': 'vim/'})
+"call dein#add('morhetz/gruvbox')
 call dein#add('vim-airline/vim-airline')
 "call dein#add('vim-airline/vim-airline-themes')
-call dein#add('Shougo/deoplete.nvim')
+"call dein#add('lervag/vimtex')
+"call dein#add('Shougo/deoplete.nvim')
+"call dein#add('natebosch/vim-lsc')
+"call dein#add('alvan/vim-closetag')
 if !has('nvim')
   call dein#add('roxma/nvim-yarp')
   call dein#add('roxma/vim-hug-neovim-rpc')
 endif
-call dein#add('racer-rust/vim-racer')
+"call dein#add('racer-rust/vim-racer')
 call dein#add('rust-lang/rust.vim')
-call dein#add('artur-shaik/vim-javacomplete2')
-call dein#add('octol/vim-cpp-enhanced-highlight')
-call dein#add('tikhomirov/vim-glsl')
+"call dein#add('artur-shaik/vim-javacomplete2')
+"call dein#add('octol/vim-cpp-enhanced-highlight')
+"call dein#add('tikhomirov/vim-glsl')
+"call dein#add('dart-lang/dart-vim-plugin')
 " call dein#add('arakashic/chromatica.nvim')
+"call dein#add('autozimu/LanguageClient-neovim', {
+"    \ 'branch': 'next',
+"    \ 'do': 'bash_install.sh',
+"    \}
+"\)
+"call dein#add('junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' })
+call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
+
 " exit dein
 call dein#end()
 " auto-install missing packages on startup
@@ -37,7 +52,7 @@ if dein#check_install()
 endif
 filetype plugin on
 
-
+"let g:deoplete#enable_at_startup=1
 
 "Credit joshdick
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
@@ -59,18 +74,14 @@ endif
 
 set background=dark " for the dark version
 " set background=light " for the light version
-colorscheme one
+let g:gruvbox_italic=1
+colorscheme onehalfdark
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
 let g:airline_powerline_fonts = 1
+let g:airline_theme='onehalfdark'
 
 set tabstop=4       " The width of a TAB is set to 4.
                     " Still it is a \t. It is just that
@@ -81,56 +92,6 @@ set softtabstop=4   " Sets the number of columns for a TAB
 set expandtab       " Expand TABs to spaces
 
 inoremap <A-;> <Esc>la
-
-let NERDTreeShowHidden=1
-
-let g:syntastic_rust_checkers = ['cargo']
-let g:racer_cmd = "~/.cargo/bin/racer"
-
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
-
-inoremap <C-Bslash> <Esc>:NERDTreeToggle<Enter>
-nnoremap <C-Bslash> <Esc>:NERDTreeToggle<Enter>
-
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
-
-" JavaComplete stuff
- nmap <leader>jI <Plug>(JavaComplete-Imports-AddMissing)
-  nmap <leader>jR <Plug>(JavaComplete-Imports-RemoveUnused)
-  nmap <leader>ji <Plug>(JavaComplete-Imports-AddSmart)
-  nmap <leader>jii <Plug>(JavaComplete-Imports-Add)
-
-  imap <C-j>I <Plug>(JavaComplete-Imports-AddMissing)
-  imap <C-j>R <Plug>(JavaComplete-Imports-RemoveUnused)
-  imap <C-j>i <Plug>(JavaComplete-Imports-AddSmart)
-  imap <C-j>ii <Plug>(JavaComplete-Imports-Add)
-
-  nmap <leader>jM <Plug>(JavaComplete-Generate-AbstractMethods)
-
-  imap <C-j>jM <Plug>(JavaComplete-Generate-AbstractMethods)
-
-  nmap <leader>jA <Plug>(JavaComplete-Generate-Accessors)
-  nmap <leader>js <Plug>(JavaComplete-Generate-AccessorSetter)
-  nmap <leader>jg <Plug>(JavaComplete-Generate-AccessorGetter)
-  nmap <leader>ja <Plug>(JavaComplete-Generate-AccessorSetterGetter)
-  nmap <leader>jts <Plug>(JavaComplete-Generate-ToString)
-  nmap <leader>jeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
-  nmap <leader>jc <Plug>(JavaComplete-Generate-Constructor)
-  nmap <leader>jcc <Plug>(JavaComplete-Generate-DefaultConstructor)
-
-  imap <C-j>s <Plug>(JavaComplete-Generate-AccessorSetter)
-  imap <C-j>g <Plug>(JavaComplete-Generate-AccessorGetter)
-  imap <C-j>a <Plug>(JavaComplete-Generate-AccessorSetterGetter)
-
-  vmap <leader>js <Plug>(JavaComplete-Generate-AccessorSetter)
-  vmap <leader>jg <Plug>(JavaComplete-Generate-AccessorGetter)
-  vmap <leader>ja <Plug>(JavaComplete-Generate-AccessorSetterGetter)
-
-  nmap <silent> <buffer> <leader>jn <Plug>(JavaComplete-Generate-NewClass)
-  nmap <silent> <buffer> <leader>jN <Plug>(JavaComplete-Generate-ClassInFile)
 
 " Highlight after 80 characters
 "   highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
@@ -154,6 +115,7 @@ set colorcolumn=81
 " compile latex
 autocmd BufNewFile,BufRead *.tex nnoremap <C-c> :w<Enter>:!pdflatex %<Enter>
 
+let g:rustfmt_autosave=1
 
-call deoplete#enable()
+"call deoplete#enable()
 

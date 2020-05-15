@@ -10,7 +10,6 @@ fi
 export EDITOR="vim"
 
 export RUST_SRC_PATH=~/src/rust/src
-
 export PATH=$PATH:~/src/_shared/Linux64/
 
 # Compilation flags
@@ -31,8 +30,15 @@ source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 export NVIM_PYTHON_LOG_FILE=/tmp/log
 export NVIM_PYTHON_LOG_LEVEL=DEBUG
 
-export _JAVA_AWT_WM_NONREPARENTING=1
+export _JAVA_AWT_WM_NONREPARENTING="1"
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk    #java-9-jdk/
 
-export MY_ROOT=~/src/jiri
-export PATH=$MY_ROOT/.jiri_root/bin:$PATH
+export QT_QPA_PLATFORM="xcb"
+export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
 
+export GDK_BACKEND="wayland"
+
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+export PATH="$PATH":"$HOME/.cargo/bin"
+export PATH="$PATH":"/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
+export PATH="$PATH":"/$HOME/.ebcli-virtual-env/executables/"
