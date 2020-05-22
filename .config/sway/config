@@ -14,43 +14,64 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-# set $term termite -e "nvim -c terminal"
 set $term alacritty
 # Your preferred application launcher
+# Note: pass the final command to swaymsg so that the resulting window can be opened
+# on the original workspace that the command was run on.
 set $menu wofi --show run
-# Your preferred web browser
-set $browser google-chrome-stable
+set $wifi-menu ~/src/wofi-wifi-menu/wofi-wifi-menu.sh
 
-exec source ~/.zshrc
-
-# wal
-exec wal -R &
-include "$HOME/.cache/wal/colors-sway"
+#your preferred web browser
+set $browser firefox-wayland
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/Backgrounds/julia2.png fill
+#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg ~/Pictures/art.png fill
+#output * bg ~/Pictures/proc.png fill
 #
 # Example configuration:
 #
-# output HDMI-A-1 transform 270
-# output eDPI-1   resolution 1920x1080 position 1920,0
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
+
+### Idle configuration
+#
+# Example configuration:
+#
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+#          timeout 600 'swaymsg "output * dpms off"' \
+#               resume 'swaymsg "output * dpms on"' \
+#          before-sleep 'swaylock -f -c 000000'
+#
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
 
 ### Input configuration
 #
 # Example configuration:
 #
+#   input "2:14:SynPS/2_Synaptics_TouchPad" {
+#       dwt enabled
+#       tap enabled
+#       natural_scroll enabled
+#       middle_emulation enabled
+#   }
+#
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
 
 set $touchpad "1739:32382:DELL0740:00_06CB:7E7E_Touchpad"
 set $mouse "1133:4123:Logitech_M705"
 
 input $touchpad {
-	dwt 1
-	tap 1
-	natural_scroll 1
+       dwt 1
+       tap 1
+       natural_scroll 1
 }
 
 input $mouse {
@@ -58,24 +79,23 @@ input $mouse {
     accel_profile flat
 }
 
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
-
 ### Key bindings
 #
 # Basics:
 #
-    # start a terminal
+    # Start a terminal
     bindsym $mod+Return exec $term
-    
-    # start a web browser
+
+    # Start a web browser
     bindsym $mod+g exec $browser
 
-    # kill focused window
+    # Kill focused window
     bindsym $mod+Shift+q kill
 
-    # start your launcher
+    # Start your launcher
     bindsym $mod+d exec $menu
+
+    bindsym $mod+n exec $wifi-menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -84,11 +104,11 @@ input $mouse {
     # mouse button for dragging.
     floating_modifier $mod normal
 
-    # reload the configuration file
+    # Reload the configuration file
     bindsym $mod+Shift+c reload
 
-    # exit sway (logs you out of your wayland session)
-    bindsym $mod+Shift+e exit
+    # Exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
@@ -97,18 +117,18 @@ input $mouse {
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
-    # or use $mod+[up|down|left|right]
+    # Or use $mod+[up|down|left|right]
     bindsym $mod+Left focus left
     bindsym $mod+Down focus down
     bindsym $mod+Up focus up
     bindsym $mod+Right focus right
 
-    # _move_ the focused window with the same, but add Shift
+    # Move the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
-    # ditto, with arrow keys
+    # Ditto, with arrow keys
     bindsym $mod+Shift+Left move left
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
@@ -116,7 +136,7 @@ input $mouse {
 #
 # Workspaces:
 #
-    # switch to workspace
+    # Switch to workspace
     bindsym $mod+1 workspace 1
     bindsym $mod+2 workspace 2
     bindsym $mod+3 workspace 3
@@ -127,7 +147,7 @@ input $mouse {
     bindsym $mod+8 workspace 8
     bindsym $mod+9 workspace 9
     bindsym $mod+0 workspace 10
-    # move focused container to workspace
+    # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace 1
     bindsym $mod+Shift+2 move container to workspace 2
     bindsym $mod+Shift+3 move container to workspace 3
@@ -163,7 +183,7 @@ input $mouse {
     # Swap focus between the tiling area and the floating area
     bindsym $mod+space focus mode_toggle
 
-    # move focus to the parent container
+    # Move focus to the parent container
     bindsym $mod+a focus parent
 #
 # Scratchpad:
@@ -175,6 +195,8 @@ input $mouse {
     bindsym $mod+Shift+minus move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
 #
 # Resizing containers:
 #
@@ -183,41 +205,44 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10 px or 10 ppt
-    bindsym $down resize grow height 10 px or 10 ppt
-    bindsym $up resize shrink height 10 px or 10 ppt
-    bindsym $right resize grow width 10 px or 10 ppt
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
 
-    # ditto, with arrow keys
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
 
-    # return to default mode
+    # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
 
-# not supported in wl-roots i guess
-# gaps_inner 0
-# gaps_outer 0
-
 #
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-bar {
+ bar {
     font pango:DejaBu Sans Mono, FontAwesome 12
     position top
     status_command i3status-rs ~/.config/sway/bar.toml
     colors {
-        statusline $color0
-        background $background
-        inactive_workspace $color4 $background $foreground 
-    }
-}
+        statusline  #ffffff
+        background #323232
+        inactive_workspace #32323200 #32323200 #5c5c5c
+     }
+ }
+
+include /etc/sway/config.d/*
+
+default_border pixel 3
+
+gaps inner 20
+gaps outer 0
 
 # Volume keys
  bindsym XF86AudioRaiseVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') +5%
@@ -227,21 +252,3 @@ bar {
 # Brightness keys
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
-
-include /etc/sway/config.d/*
-
-client.focused $color0 $color1 $color4 $foreground $color0
-
-default_border pixel 3
-
-# Take Screenshot
-bindsym --release $mod+p exec grim ~/Pictures/Screenshots/$(date +%Y-%m-%d-%T)-screenshot.png
-
-# Launch NetworkManager
-exec nm-applet
-
-# Lock screen
-bindsym $mod+Shift+x exec swaylock
-
-# Enable notifications
-exec dunst

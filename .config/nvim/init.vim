@@ -10,6 +10,7 @@ endif
 filetype off
 " append to runtime path
 set rtp+=/usr/share/vim/vimfiles
+set rtp+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 " initialize dein, plugins are installed to this directory
 call dein#begin(expand('~/.cache/dein'))
 " add packages here, e.g:
@@ -116,6 +117,7 @@ set colorcolumn=81
 autocmd BufNewFile,BufRead *.tex nnoremap <C-c> :w<Enter>:!pdflatex %<Enter>
 
 let g:rustfmt_autosave=1
+
 
 "call deoplete#enable()
 

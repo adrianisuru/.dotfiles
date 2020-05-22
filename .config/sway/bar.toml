@@ -34,8 +34,12 @@ format = "{1m}"
 block = "sound"
 
 [[block]]
+block = "networkmanager"
+show_type = false 
+
+[[block]]
 block = "battery"
-device = 0
+device = "BAT0"
 
 [[block]]
 block = "time"
