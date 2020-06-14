@@ -2,12 +2,6 @@ theme = "solarized-dark"
 icons = "awesome"
 
 [[block]]
-block = "music"
-player = "spotify"
-max_width = 36
-buttons = ["play", "next"]
-
-[[block]]
 block = "disk_space"
 path = "/"
 alias = "/"
@@ -35,7 +29,6 @@ block = "sound"
 
 [[block]]
 block = "networkmanager"
-show_type = false 
 
 [[block]]
 block = "battery"
