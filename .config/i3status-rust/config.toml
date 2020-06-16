@@ -1,5 +1,8 @@
-theme = "solarized-dark"
-icons = "awesome"
+icons = "awesome5"
+scrolling = "natural"
+
+[theme]
+file = "adrian.toml"
 
 [[block]]
 block = "disk_space"
@@ -29,6 +32,8 @@ block = "sound"
 
 [[block]]
 block = "networkmanager"
+ap_format = "{ssid}"
+device_format = "{icon}{ap}"
 
 [[block]]
 block = "battery"
