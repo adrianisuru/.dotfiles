@@ -25,12 +25,7 @@ set $wifi-menu $term -e nmtui #~/src/wofi-wifi-menu/wofi-wifi-menu.sh
 set $browser firefox-wayland
 
 ### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-#output * bg ~/Pictures/art.png fill
-#output * bg ~/Pictures/proc.png fill
-set $background /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png
+set $background ~/Pictures/Backgrounds/Nord\ Wallpaper\ Pack/daniel-leone-v7daTKlZzaw-unsplash\ \[modded\].jpg
 output * bg $background fill
 #
 # Example configuration:
@@ -57,16 +52,6 @@ set $lock swaylock -f -i $background --indicator-radius 100 --indicator-thicknes
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 ### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
@@ -231,19 +216,75 @@ bindsym $mod+r mode "resize"
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
- bar {
-    font monospace, Font Awesome 5 Free, 10
+# bar {
+#    font DejaVu Sans Mono, Material Icons 10
+#    position top
+#    status_command i3status-rs
+#    colors {
+#        statusline  #ffffff
+#        background #323232
+#        inactive_workspace #323232 #323232 #ffffff
+#        focused_workspace #859900 #859900 #ffffff
+#     }
+# }
+
+## Colors
+
+# Nord colors https://www.nordtheme.com/docs/colors-and-palettes
+
+# Polar Night
+set $nord0 #2e3440
+set $nord1 #3b4252
+set $nord2 #434c5e
+set $nord3 #4c566a
+
+# Snow Storm
+set $nord4 #d8dee9
+set $nord5 #e5e9f0
+set $nord6 #eceff4
+
+# Frost
+set $nord7 #8fbcbb
+set $nord8 #88c0d0
+set $nord9 #81a1c1
+set $nord10 #5e81ac
+
+# Aurora
+set $nord11 #bf616a
+set $nord12 #d08770
+set $nord13 #ebcb8b
+set $nord14 #a3be8c
+set $nord15 #b48ead
+
+set $cl_background $nord0
+set $cl_focused $nord8
+set $cl_unfocused $nord7
+set $cl_text $nord4
+set $cl_inactive $nord9
+set $cl_urgent $nord11
+
+#                       border          background      text        indicator   child_border
+client.focused          $cl_focused     $cl_focused     $cl_text
+client.unfocused        $cl_unfocused   $cl_unfocused   $cl_text
+client.focused_inactive $cl_inactive    $cl_inactive    $cl_text 
+client.urgent           $cl_urgent      $cl_urgent      $cl_text  
+
+
+bar {
+    font JetBrains Mono Medium, Font Awesome 5 Free, 10
     position top
     status_command i3status-rs
     colors {
-        statusline  #ffffff
-        background #323232
-        inactive_workspace #323232 #323232 #ffffff
-        focused_workspace #859900 #859900 #ffffff
+        statusline $cl_text
+        background $cl_background
+        inactive_workspace $cl_inactive $cl_inactive $cl_text
+        focused_workspace $cl_focused $cl_focused $cl_text
      }
- }
+}
 
 include /etc/sway/config.d/*
+
+
 
 default_border pixel 3
 

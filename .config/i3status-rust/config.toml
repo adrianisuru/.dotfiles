@@ -2,7 +2,15 @@ icons = "awesome5"
 scrolling = "natural"
 
 [theme]
-file = "adrian.toml"
+file = "nord.toml"
+
+[theme.overrides]
+alternating_tint_bg = "#111111"
+
+[[block]]
+block = "focused_window"
+show_marks = "visible"
+max_width = 80
 
 [[block]]
 block = "disk_space"
