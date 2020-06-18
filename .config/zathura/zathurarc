@@ -1,0 +1,7 @@
+font monospace
+set default-bg "#2e3440"
+set default-fg "#d8dee9"
+set inputbar-bg "#2e3440"
+set inputbar-fg "#d8dee9"
+set statusbar-bg "#434c5e"
+set statusbar-fg "#d8dee9"
