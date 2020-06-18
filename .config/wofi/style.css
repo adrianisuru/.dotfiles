@@ -20,6 +20,10 @@
 @define-color base0E #a3be8c;
 @define-color base0F #b48ead;
 
+* {
+    font-family: monospace;
+}
+
 window {
 	margin: 5px;
 	border-radius: 3px;
