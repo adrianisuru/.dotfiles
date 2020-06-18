@@ -1,0 +1,55 @@
+/* Nord Theme */
+/* Polar Night */
+@define-color base00 #2e3440;
+@define-color base01 #3b4252;
+@define-color base02 #434c5e;
+@define-color base03 #4c566a;
+/* Snow Storm */
+@define-color base04 #d8dee9;
+@define-color base06 #e5e9f0;
+@define-color base06 #eceff4;
+/* Frost */
+@define-color base07 #8fbcbb;
+@define-color base08 #88c0d0;
+@define-color base09 #81a1c1;
+@define-color base0A #5e81ac;
+/* Aurora */
+@define-color base0B #bf616a;
+@define-color base0C #d08770;
+@define-color base0D #ebcb8b;
+@define-color base0E #a3be8c;
+@define-color base0F #b48ead;
+
+window {
+	margin: 5px;
+	border-radius: 3px;
+	background-color: @base03;
+}
+
+#input {
+	border-radius: 0px;
+	background-color: @base03;
+}
+
+#inner-box {
+	margin: 5px;
+	color: @base06;
+	background-color: @base00;
+}
+
+#outer-box {
+	margin: 5px;
+	background-color: @base00;
+}
+
+#scroll {
+	margin: 5px;
+	background-color: @base00;
+}
+
+#text {
+	margin: 2px;
+}
+
+
+
