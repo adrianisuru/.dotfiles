@@ -1,0 +1,3 @@
+[submodule "/home/adrianisuru/.powerlevel10k"]
+	path = /home/adrianisuru/.powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
