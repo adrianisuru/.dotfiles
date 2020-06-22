@@ -13,7 +13,7 @@ export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
 alias ls='ls --color=auto'
 
-export PAGER="nvimpager"
+export PAGER='nvimpager'
 export VISUAL='vim'
 
 # Preferred editor for local and remote sessions

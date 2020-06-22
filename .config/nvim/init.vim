@@ -18,7 +18,8 @@ call dein#begin(expand('~/.cache/dein'))
 call dein#add('jiangmiao/auto-pairs')
 "call dein#add('scrooloose/nerdtree')
 "call dein#add('rakr/vim-one')
-call dein#add('sonph/onehalf', {'rtp': 'vim/'})
+"call dein#add('sonph/onehalf', {'rtp': 'vim/'})
+call dein#add('arcticicestudio/nord-vim')
 "call dein#add('morhetz/gruvbox')
 call dein#add('vim-airline/vim-airline')
 "call dein#add('vim-airline/vim-airline-themes')
@@ -76,13 +77,12 @@ endif
 set background=dark " for the dark version
 " set background=light " for the light version
 let g:gruvbox_italic=1
-colorscheme onehalfdark
+colorscheme nord
 
 set statusline+=%#warningmsg#
 set statusline+=%*
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme='onehalfdark'
 
 set tabstop=4       " The width of a TAB is set to 4.
                     " Still it is a \t. It is just that
