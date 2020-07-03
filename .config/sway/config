@@ -1,8 +1,31 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
+## Colors
+
+# Nord colors https://www.nordtheme.com/docs/colors-and-palettes
+
+# Polar Night
+set $nord0 #2e3440
+set $nord1 #3b4252
+set $nord2 #434c5e
+set $nord3 #4c566a
+
+# Snow Storm
+set $nord4 #d8dee9
+set $nord5 #e5e9f0
+set $nord6 #eceff4
+
+# Frost
+set $nord7 #8fbcbb
+set $nord8 #88c0d0
+set $nord9 #81a1c1
+set $nord10 #5e81ac
+
+# Aurora
+set $nord11 #bf616a
+set $nord12 #d08770
+set $nord13 #ebcb8b
+set $nord14 #a3be8c
+set $nord15 #b48ead
+
 
 ### Variables
 #
@@ -25,8 +48,9 @@ set $wifi-menu $term -e nmtui #~/src/wofi-wifi-menu/wofi-wifi-menu.sh
 set $browser firefox-wayland
 
 ### Output configuration
-set $background ~/Pictures/Backgrounds/Nord\ Wallpaper\ Pack/daniel-leone-v7daTKlZzaw-unsplash\ \[modded\].jpg
-output * bg $background fill
+set $background ~/Pictures/Backgrounds/nietzsche/nietzsche_dark.png fill
+set $background $nord10 solid_color
+output * bg $background 
 #
 # Example configuration:
 #
@@ -227,34 +251,6 @@ bindsym $mod+r mode "resize"
 #        focused_workspace #859900 #859900 #ffffff
 #     }
 # }
-
-## Colors
-
-# Nord colors https://www.nordtheme.com/docs/colors-and-palettes
-
-# Polar Night
-set $nord0 #2e3440
-set $nord1 #3b4252
-set $nord2 #434c5e
-set $nord3 #4c566a
-
-# Snow Storm
-set $nord4 #d8dee9
-set $nord5 #e5e9f0
-set $nord6 #eceff4
-
-# Frost
-set $nord7 #8fbcbb
-set $nord8 #88c0d0
-set $nord9 #81a1c1
-set $nord10 #5e81ac
-
-# Aurora
-set $nord11 #bf616a
-set $nord12 #d08770
-set $nord13 #ebcb8b
-set $nord14 #a3be8c
-set $nord15 #b48ead
 
 set $cl_background $nord0
 set $cl_focused $nord8
