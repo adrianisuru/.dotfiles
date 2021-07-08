@@ -16,6 +16,10 @@ alias ls='ls --color=auto'
 export PAGER='nvimpager'
 export VISUAL='vim'
 
+function cd {
+  builtin cd "$@" && clear && ls
+}
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
